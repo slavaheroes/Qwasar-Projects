@@ -5,7 +5,7 @@
 #include <string.h>
 
 //this function converts num in decimal to string according to its base
-void write_number(int num, int base, int* num_chars){
+void write_number(long num, int base, int* num_chars){
   static char Representation[]= "0123456789abcdef";
   char* buffer = malloc(1024);
   int ind = 0;
@@ -27,9 +27,6 @@ void write_number(int num, int base, int* num_chars){
     write(1, buffer+ind, 1);
     ind--;
   }
-  
-  
-
   free(buffer);
 }
 
@@ -39,13 +36,13 @@ int my_printf(char * restrict format, ...){
     int num_chars = 0;
 
     for (char *c = format; *c != '\0'; c++){
-        if (*c != '%'){
+        if (*c != '%'){  
             num_chars++;
             write(1,c,1);
             continue;
         }
         c++;
-
+        
         //these statements handle c (char) and duox flags
         if (*c == 'c'){
           char ch[2] = "/0";
@@ -57,21 +54,27 @@ int my_printf(char * restrict format, ...){
           if (num<0){
             num_chars++;
             write(1,"-",1);
+            num = num*(-1);
           }
-          num = num*(-1);
-          write_number(num, 10, &num_chars);    
+          
+          write_number((long) num, 10, &num_chars);    
         }else if (*c == 'u'){
           int num = va_arg(arg, int);
-          write_number(num, 10, &num_chars);
+          write_number((long) num, 10, &num_chars);
         }else if (*c == 'o'){
           int num = va_arg(arg, int);
-          write_number(num, 8, &num_chars);
+          write_number((long) num, 8, &num_chars);
         }else if (*c == 'x'){
           int num = va_arg(arg, int);
-          write_number(num, 16, &num_chars);
+          write_number((long) num, 16, &num_chars);
         }else if (*c == 's'){
             //this statement handle string
             char* buffer = va_arg(arg, char*);
+            if (buffer==NULL){
+              num_chars = num_chars + 6;
+              write(1,"(null)",6);
+              continue;
+            }
             while (*(buffer) != '\0'){
               num_chars++;
               write(1,buffer,1);
@@ -80,7 +83,7 @@ int my_printf(char * restrict format, ...){
         }else if (*c == 'p'){
           //this statement handle pointer address
           void* p = va_arg(arg, void *);
-          int a = (int) p;
+          long a = (long) p;
           num_chars++;
           write(1,"0",1);
           num_chars++;
@@ -97,12 +100,18 @@ int my_printf(char * restrict format, ...){
 
 int main(int argc, char** argv){
     void* a;
-    int n = my_printf("char *restrict format, %c %x %s %p...\n", 'f', 0, "HELLO WORLD", a);
+    int n = my_printf("char *restrict format, %c %d %s %p...\n", 'f', -100, (char *) NULL, a);
 
-    int m = printf("char *restrict format, %c %x %s %p...\n", 'f', 0, "HELLO WORLD",a);
+    int m = printf("char *restrict format, %c %d %s %p...\n", 'f', -100, (char *) NULL,a);
 
     printf("n is : %d, m is: %d\n", n, m);
-    
+    int num = 5;
+    //my_printf("%d\n", 2);
+    my_printf("%d - %d - %d!\n", 2048, 0, -1337);
+    my_printf("%d!\n", 1337);
+
+    printf("%p\n",&num);
+    my_printf("%p\n",&num);
 
 
     return 0;
