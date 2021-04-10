@@ -13,6 +13,14 @@
 #define MAX_STR_LENGTH 256
 #define MAX_TIME_LENGTH 20
 
+/*
+This program replicates actions of linux shell command ls with
+[-a, -t, -l] options. However, there's problem with -t options,
+because of st_mtime member of struct stat. In VSCode environment,
+there's no such member of struct stat, hence ./my_ls sorts according to
+st_ctime member.
+*/
+
 // this struct is used to make an array of files we are going to list
 // it makes easy them to sort
 struct fileDescription{
