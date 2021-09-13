@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Tetris</title>
+        <meta charset="utf-8">
+        <script src="app.js"></script>
+        <link rel="stylesheet" href="styles.css"></link>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+    </head>
+    <body>
+
+    <div class="row">
+
+        <canvas id="my-canvas" class="col-4"></canvas>
+
+        <div class="col-4" id="dashboard">
+
+            <h1>My TETRIS</h1>
+
+            <span>Next Tetramino <br></span>
+
+            <canvas id="nextTetramino"></canvas>
+
+            <div id="scoreboard">
+                <h3>Score: <span id="score">0</span></h3>
+                <h3>Lines: <span id="lines">0</span></h3>
+                <h3>Level: <span id="level">1</span></h3>
+            </div>
+
+            <button id="play">Play</button>
+
+        </div>
+
+
+        <div class="col-4" id="controls">
+            <h3>Highscore: <span id="highscore">0</span></h3>
+            
+            <div class="border border-success">
+                <h1>Controls</h1>
+
+                <h3>A: Move Left</h3>
+                <h3>D: Move Right</h3>
+                <h3>S: Move Down</h3>
+                <h3>W: Rotate Right</h3>
+                <h3>P: Pause</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    </body>
+</html>

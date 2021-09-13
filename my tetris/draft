@@ -1,0 +1,30 @@
+    // Draw Canvas background
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw gameboard rectangle
+    ctx.strokeStyle = 'gold';
+    ctx.strokeRect(8, 8, 330, 462);
+
+
+    // Set font for score label text and draw
+    ctx.fillStyle = 'gray';
+    ctx.font = '21px Arial';
+    
+    canvas1 = document.getElementById('controls');
+    ctx1 = canvas.getContext('2d');
+
+    // Draw next
+    ctx1.fillText("WIN / LOSE", 300, 265);
+    ctx1.strokeRect(300, 270, 160, 25);
+    ctx1.fillText(winOrLose, 305, 288);
+
+    // // Draw controls
+    ctx1.fillText("CONTROLS", 300, 335);
+    ctx1.strokeRect(300, 341, 160, 129);
+    ctx1.font = '19px Arial';
+    ctx1.fillText("A: Move Left", 305, 363);
+    ctx1.fillText("D: Move Right", 305, 388);
+    ctx1.fillText("S: Move Down", 305, 413);
+    ctx1.fillText("W: Rotate Right", 305, 438);
+    ctx1.fillText("P: Pause", 305, 463);
