@@ -74,6 +74,21 @@ class Coordinates {
 
 // Execute SetupCanvas when page loads
 document.addEventListener('DOMContentLoaded', () => {
+
+    myAudio = new Audio('soundtrack.mp3'); 
+    if (typeof myAudio.loop == 'boolean')
+    {
+        myAudio.loop = true;
+    }
+    else
+    {
+        myAudio.addEventListener('ended', function() {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+    }
+    myAudio.play();
+    
     document.getElementById('play').onclick = SetupCanvas;
 });
 
