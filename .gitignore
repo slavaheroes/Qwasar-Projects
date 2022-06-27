@@ -1,0 +1,16 @@
+myish
+Ethics*
+*csv
+*txt
+*db
+.DS_Store
+.ipynb_check*
+__pycache__
+*mp3
+mastermind
+my_printf
+my_ls.dSYM
+a.out
+my_readline
+
+
